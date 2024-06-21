@@ -224,7 +224,7 @@ class DiscordBot(commands.Bot):
         executed_command = str(split[0])
         if context.guild is not None:
             self.logger.info(
-                f"Executed {executed_command} command in {context.guild.name} (ID: {context.guild.id}) by {context.author} (ID: {context.author.id})"
+                f"Executed {executed_command} command in {context.guild.name} (ID: {context.guild.id})(CH: {context.message.channel}) by {context.author} (ID: {context.author.id})"
             )
         else:
             self.logger.info(
@@ -286,7 +286,13 @@ class DiscordBot(commands.Bot):
             await context.send(embed=embed)
         else:
             raise error
-
+        
+    async def on_ready(self):
+        try:
+            synced = await bot.tree.sync()
+            print(f"Synced {len(synced)} commands.")
+        except Exception as e:
+            print(e)
 
 load_dotenv()
 

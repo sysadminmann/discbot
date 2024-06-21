@@ -377,6 +377,31 @@ class Moderation(commands.Cog, name="moderation"):
         await context.send(file=f)
         os.remove(log_file)
 
+    @commands.hybrid_command(
+        name="test",
+        description="Testet was auch immer hier steht",
+    )
+    @commands.has_guild_permissions(manage_messages=True)
+    @commands.bot_has_permissions(manage_messages=True)
+    
+    @app_commands.describe(amount="The amount of messages that should be deleted.")
+    async def test(self, context: Context, amount: int) -> None:
+        """
+        Delete a number of messages.
+
+        :param context: The hybrid command context.
+        :param amount: The number of messages that should be deleted.
+        """
+        await context.send(
+            "Deleting messages..."
+        )  # Bit of a hacky way to make sure the bot responds to the interaction and doens't get a "Unknown Interaction" response
+        purged_messages = await context.channel.purge(limit=amount + 1)
+        embed = discord.Embed(
+            description=f"**{context.author}** cleared **{len(purged_messages)-1}** messages!",
+            color=0xBEBEFE,
+        )
+        await context.channel.send(embed=embed)
+
 
 async def setup(bot) -> None:
     await bot.add_cog(Moderation(bot))
