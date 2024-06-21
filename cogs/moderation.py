@@ -25,6 +25,7 @@ class Moderation(commands.Cog, name="moderation"):
     )
     @commands.has_permissions(kick_members=True)
     @commands.bot_has_permissions(kick_members=True)
+    @app_commands.guilds(discord.Object(id=os.getenv(id_guild))
     @app_commands.describe(
         user="The user that should be kicked.",
         reason="The reason why the user should be kicked.",
@@ -76,6 +77,7 @@ class Moderation(commands.Cog, name="moderation"):
     )
     @commands.has_permissions(manage_nicknames=True)
     @commands.bot_has_permissions(manage_nicknames=True)
+    @app_commands.guilds(discord.Object(id=os.getenv(id_guild))
     @app_commands.describe(
         user="The user that should have a new nickname.",
         nickname="The new nickname that should be set.",
@@ -113,6 +115,7 @@ class Moderation(commands.Cog, name="moderation"):
     )
     @commands.has_permissions(ban_members=True)
     @commands.bot_has_permissions(ban_members=True)
+    @app_commands.guilds(discord.Object(id=os.getenv(id_guild))
     @app_commands.describe(
         user="The user that should be banned.",
         reason="The reason why the user should be banned.",
@@ -182,6 +185,7 @@ class Moderation(commands.Cog, name="moderation"):
         description="Adds a warning to a user in the server.",
     )
     @commands.has_permissions(manage_messages=True)
+    @app_commands.guilds(discord.Object(id=os.getenv(id_guild))
     @app_commands.describe(
         user="The user that should be warned.",
         reason="The reason why the user should be warned.",
@@ -223,6 +227,7 @@ class Moderation(commands.Cog, name="moderation"):
         description="Removes a warning from a user in the server.",
     )
     @commands.has_permissions(manage_messages=True)
+    @app_commands.guilds(discord.Object(id=os.getenv(id_guild))
     @app_commands.describe(
         user="The user that should get their warning removed.",
         warn_id="The ID of the warning that should be removed.",
@@ -252,6 +257,7 @@ class Moderation(commands.Cog, name="moderation"):
         description="Shows the warnings of a user in the server.",
     )
     @commands.has_guild_permissions(manage_messages=True)
+    @app_commands.guilds(discord.Object(id=os.getenv(id_guild))
     @app_commands.describe(user="The user you want to get the warnings of.")
     async def warning_list(self, context: Context, user: discord.User) -> None:
         """
@@ -277,6 +283,7 @@ class Moderation(commands.Cog, name="moderation"):
     )
     @commands.has_guild_permissions(manage_messages=True)
     @commands.bot_has_permissions(manage_messages=True)
+    @app_commands.guilds(discord.Object(id=os.getenv(id_guild))
     @app_commands.describe(amount="The amount of messages that should be deleted.")
     async def purge(self, context: Context, amount: int) -> None:
         """
@@ -301,6 +308,7 @@ class Moderation(commands.Cog, name="moderation"):
     )
     @commands.has_permissions(ban_members=True)
     @commands.bot_has_permissions(ban_members=True)
+    @app_commands.guilds(discord.Object(id=os.getenv(id_guild))
     @app_commands.describe(
         user_id="The user ID that should be banned.",
         reason="The reason why the user should be banned.",
@@ -337,7 +345,9 @@ class Moderation(commands.Cog, name="moderation"):
         name="archive",
         description="Archives in a text file the last messages with a chosen limit of messages.",
     )
+    @app_commands.guilds(discord.Object(id=GUILD_ID))
     @commands.has_permissions(manage_messages=True)
+    @app_commands.guilds(discord.Object(id=os.getenv(id_guild))
     @app_commands.describe(
         limit="The limit of messages that should be archived.",
     )
