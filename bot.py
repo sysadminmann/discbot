@@ -18,6 +18,7 @@ import discord
 from discord.ext import commands, tasks
 from discord.ext.commands import Context
 from dotenv import load_dotenv
+from typing import Final
 
 from database import DatabaseManager
 
@@ -288,6 +289,8 @@ class DiscordBot(commands.Bot):
 
 
 load_dotenv()
+TOKEN: Final[str] = os.getenv('id_token')
+GUILD: Final[str] = os.getenv('id_guild')
 
 bot = DiscordBot()
-bot.run(os.getenv("id_token"))
+bot.run(os.getenv("TOKEN"))
