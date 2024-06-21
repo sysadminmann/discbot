@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `warns` (
-  `id` int(11) NOT NULL,
+  `id` int(14) NOT NULL,
   `user_id` varchar(20) NOT NULL,
   `server_id` varchar(20) NOT NULL,
   `moderator_id` varchar(20) NOT NULL,
