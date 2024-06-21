@@ -289,8 +289,6 @@ class DiscordBot(commands.Bot):
 
 
 load_dotenv()
-TOKEN: Final[str] = os.getenv('id_token')
-GUILD: Final[str] = os.getenv('id_guild')
 
 bot = DiscordBot()
-bot.run(os.getenv("TOKEN"))
+bot.run(token=os.getenv('id_token'))
